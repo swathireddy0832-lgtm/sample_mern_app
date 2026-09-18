@@ -1,1 +1,1 @@
-wellcome to the mern app
+hello this is sample mern app
