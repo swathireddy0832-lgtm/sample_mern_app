@@ -1,14 +1,28 @@
 let express=require("express");
 let router=express.Router();
+let{users}=require("../models/users");
 
-router.post("/register", (req, res) => {
+router.post("/register",async (req, res) => {
   res.send("Register page called");
   let data=req.body;
-  res.send(data.name);
+  let newuser=new users(data);
+  let result=await newuser.save();
+  res.send(result);
+
 });
 
-router.post("/login", (req, res) => {
-  res.send("Login page called");
+router.post("/login", async(req, res) => {
+  let user=await users.findOne({email:req.body.email});
+  if(user){
+    let passwordmatch=await bcrypt.compare(req.body.password,user.password);
+    if(passwordmatch){
+      res.send("Login successful");
+    }else{
+      res.send("Invalid password");
+        }
+  }else{
+    res.send("email not found");
+  }
 });
 
 router.get("/viewtasks", (req, res) => {
