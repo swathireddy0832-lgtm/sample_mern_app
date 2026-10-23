@@ -1,15 +1,33 @@
+
 import Header from './components/Header';
 import Footer from './components/Footer';
+
+import Home from './pages/Home';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Services from './pages/Services';
+import Login from './pages/Login';
+import Register from './pages/Register';
+
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div>
-      <Header></Header>
-      <h1>My first react application</h1>
-      <h4>created by swathi</h4>
-      <Footer></Footer>
+      <Header />
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
